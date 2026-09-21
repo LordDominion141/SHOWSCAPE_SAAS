@@ -17,7 +17,9 @@ export default async function Home({ searchParams }) {
   if (installationId && owner && repo) {
     try {
       const readme = await fetchReadme(installationId, owner, repo);
-      markdownBlock = extractShowscapeBlock(readme);
+      markdownBlock =
+        extractShowscapeBlock(readme) ??
+        "### No Showscape block found";
     } catch (err) {
       errorMsg = err.message;
     }
